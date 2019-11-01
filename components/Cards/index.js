@@ -32,14 +32,11 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
 function Articles(object) {
 
     let shortcut = object.data.articles;
-    // shortcut.forEach((item => {
-    //     console.log(item);
-    // }))
 
-    // shortcut.forEach(random => {
+    // shortcut.bootstrap['0'].forEach(random => {
     //     console.log('comment', random);
     // })
-    console.log('HIIIIIIIIIIIIIIIII', shortcut);
+   
 
     const card = document.createElement('div');
     const bootstrap = document.createElement('div');
@@ -51,8 +48,6 @@ function Articles(object) {
     const imgCon = document.createElement('div');
     const image = document.createElement('img');
     const authName = document.createElement('span');
-
-    
 
     card.appendChild(bootstrap);
     card.appendChild(javascript);
@@ -73,16 +68,12 @@ function Articles(object) {
     author.classList.add('author');
     imgCon.classList.add('img-container');
 
-    bootstrap.textContent = shortcut.bootstrap;
+    bootstrap.textContent = shortcut.bootstrap['0'];
     javascript.textContent = shortcut.javascript;
     jquery.textContent = shortcut.jquery;
     node.textContent = shortcut.node;
     technology.textContent = shortcut.technology;
     // author.textContent = shortcut.;
-
-
-
-
     
 return card;
 }
