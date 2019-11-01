@@ -21,59 +21,82 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
 .then(response => {
-    console.log(response);
+    console.log(response)
     const test = document.querySelector('.cards-container');
-    test.appendChild(Articles(response));
+    response.data.articles.bootstrap.forEach(item => {
+        test.appendChild(Articles(item.headline, item.authorName, item.authorPhoto))
+    });
+
+    response.data.articles.javascript.forEach(item => {
+        test.appendChild(Articles(item.headline, item.authorName, item.authorPhoto))
+    });
+
+    response.data.articles.jquery.forEach(item => {
+        test.appendChild(Articles(item.headline, item.authorName, item.authorPhoto))
+    });
+
+    response.data.articles.node.forEach(item => {
+        test.appendChild(Articles(item.headline, item.authorName, item.authorPhoto))
+    });
+
+    response.data.articles.technology.forEach(item => {
+        test.appendChild(Articles(item.headline, item.authorName, item.authorPhoto))
+    });
 })
 .catch( error => {
     console.log(error);
 })
 
-function Articles(object) {
+function Articles(one, two, three) {
 
-    let shortcut = object.data.articles;
+    // let shortcut = object.data.articles;
 
     // shortcut.bootstrap['0'].forEach(random => {
     //     console.log('comment', random);
     // })
-   
 
     const card = document.createElement('div');
-    const bootstrap = document.createElement('div');
-    const javascript = document.createElement('div');
-    const jquery = document.createElement('div');
-    const node = document.createElement('div');
-    const technology = document.createElement('div');
+    const headline = document.createElement('div');
+    // const bootstrap = document.createElement('div');
+    // const javascript = document.createElement('div');
+    // const jquery = document.createElement('div');
+    // const node = document.createElement('div');
+    // const technology = document.createElement('div');
     const author = document.createElement('div');
     const imgCon = document.createElement('div');
     const image = document.createElement('img');
     const authName = document.createElement('span');
 
-    card.appendChild(bootstrap);
-    card.appendChild(javascript);
-    card.appendChild(jquery);
-    card.appendChild(node);
-    card.appendChild(technology);
+    card.appendChild(headline);
+    // card.appendChild(javascript);
+    // card.appendChild(jquery);
+    // card.appendChild(node);
+    // card.appendChild(technology);
     card.appendChild(author);
     author.appendChild(imgCon);
     author.appendChild(authName);
     imgCon.appendChild(image);
 
     card.classList.add('card');
-    bootstrap.classList.add('headline');
-    javascript.classList.add('headline');
-    jquery.classList.add('headline');
-    node.classList.add('headline');
-    technology.classList.add('headline');
+    headline.classList.add('headline');
+    // javascript.classList.add('headline');
+    // jquery.classList.add('headline');
+    // node.classList.add('headline');
+    // technology.classList.add('headline');
     author.classList.add('author');
     imgCon.classList.add('img-container');
 
-    bootstrap.textContent = shortcut.bootstrap['0'];
-    javascript.textContent = shortcut.javascript;
-    jquery.textContent = shortcut.jquery;
-    node.textContent = shortcut.node;
-    technology.textContent = shortcut.technology;
+    headline.textContent = one;
+    authName.textContent = two;
+    image.src = three;
+    // bootstrap.textContent = shortcut.bootstrap;
+    // javascript.textContent = shortcut.javascript;
+    // jquery.textContent = shortcut.jquery;
+    // node.textContent = shortcut.node;
+    // technology.textContent = shortcut.technology;
+
+
     // author.textContent = shortcut.;
-    
+    // console.log(object.headline)
 return card;
 }
